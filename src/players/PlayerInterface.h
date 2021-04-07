@@ -5,7 +5,7 @@
 #include <nlohmann/json.hpp>
 
 
-using json = nlohmann::json;[[]]
+using json = nlohmann::json;
 
 class Player {
   public:
@@ -13,11 +13,14 @@ class Player {
     std::string realm_;
     std::string region_;
     double raiderIOscore_;
+    json warcraftLogsParse_;
+
     virtual std::string getName() { return name_; };
     virtual std::string getRealm() { return realm_; };
     virtual std::string getRegion() { return region_; };
     virtual bool loadPlayerWarcraftLogs(json characterLogs) = 0;
     virtual bool loadPlayerRaiderIO(json characterRaiderIO) = 0;
+
 };
 
 #endif

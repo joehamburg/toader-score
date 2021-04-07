@@ -10,6 +10,7 @@ RetailWoWPlayer::RetailWoWPlayer( std::string name, std::string realm, std::stri
 RetailWoWPlayer::~RetailWoWPlayer() {}
 
 bool RetailWoWPlayer::loadPlayerWarcraftLogs(json characterLogs) {
+  warcraftLogsParse_ = characterLogs;
   for (const auto& item : characterLogs.items())
   {
     std::cout << item.key() << "\n";
@@ -18,6 +19,7 @@ bool RetailWoWPlayer::loadPlayerWarcraftLogs(json characterLogs) {
       std::cout << "  " << val.key() << ": " << val.value() << "\n";
     }
   }
+
   return true;
 }
 

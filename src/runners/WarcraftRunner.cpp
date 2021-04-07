@@ -17,7 +17,6 @@ inline bool fileExists (const std::string& name) {
 }
 
 int main(int argc, char* argv[]) {
-
   // Check the number of parameters
   if (argc < 2) {
     // Tell the user how to run the program
@@ -42,21 +41,23 @@ int main(int argc, char* argv[]) {
   Player* player = PF->getPlayer();
 
   // !TODD: Need a loader factory that loads based on Warcraft Runner Config vals idk call me maybe????
-  WarcraftLogsLoader* testLoader = new WarcraftLogsLoader(runnerData->apiKey_, player);
-  if ( !testLoader->loadPlayerStats() ) {
+  WarcraftLogsLoader* warcraftLogsLoader = new WarcraftLogsLoader(runnerData->apiKey_, player);
+  if ( !warcraftLogsLoader->loadPlayerStats() ) {
     std::cerr << "Error: could not load Warcraft logs" << std::endl;
     return 1;
   }
+  // std::cout << "Warcraft Logs : " << player->warcraftLogsParse_ << std::endl;
 
-  RaiderIOLoader* test2Loader = new RaiderIOLoader(player);
-  if ( !test2Loader->loadPlayerStats() ) {
+  RaiderIOLoader* raiderIOLoader = new RaiderIOLoader(player);
+  if ( !raiderIOLoader->loadPlayerStats() ) {
     std::cerr << "Error: could not load Warcraft logs" << std::endl;
     return 1;
   }
-  std::cout << player->raiderIOscore_ << std::endl;
+  std::cout << "RaiderIO : " << player->raiderIOscore_ << std::endl;
 
   // Cleanup
   delete configParser;
   delete runnerData;
   delete PF;
+  delete raiderIOLoader;
 }

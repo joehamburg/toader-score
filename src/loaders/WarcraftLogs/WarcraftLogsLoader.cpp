@@ -9,7 +9,6 @@ WarcraftLogsLoader::WarcraftLogsLoader(std::string apiKey, Player* player):
 
 WarcraftLogsLoader::~WarcraftLogsLoader() {}
 
-
 bool WarcraftLogsLoader::loadPlayerStats() {
   bool retVal = true;
   std::string urlString = baseURL_ + "/parses/character/"
