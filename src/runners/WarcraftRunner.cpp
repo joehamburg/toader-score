@@ -53,7 +53,21 @@ int main(int argc, char* argv[]) {
     std::cerr << "Error: could not load Warcraft logs" << std::endl;
     return 1;
   }
-  std::cout << "RaiderIO : " << player->raiderIOscore_ << std::endl;
+
+  double scoreNeeded;
+  if ( !raiderIOLoader->getQuantileScore(0.999, scoreNeeded) ) {
+    std::cerr << "Error: could not get quantile score from raider.io" << std::endl;
+    return 1;
+  }
+
+
+  std::cout << *player;
+
+  bool good = scoreNeeded <= player->raiderIOscore_;
+  std::cout << "Scored needed for 0.999 quantile: " << scoreNeeded << std::endl;
+  std::cout << "Is this player good?: " << good << std::endl;
+
+  // std::cout << "RaiderIO : " << player->raiderIOscore_ << std::endl;
 
   // Cleanup
   delete configParser;

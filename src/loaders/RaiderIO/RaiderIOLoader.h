@@ -19,6 +19,7 @@ class RaiderIOLoader {
     RaiderIOLoader(Player* player);
     ~RaiderIOLoader();
     bool loadPlayerStats();
+    bool getQuantileScore(double quantile, double& quantileScore);
 };
 
 #endif

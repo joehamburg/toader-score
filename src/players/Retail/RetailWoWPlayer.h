@@ -9,6 +9,7 @@ class RetailWoWPlayer : public Player {
     ~RetailWoWPlayer();
     bool loadPlayerWarcraftLogs(json characterLogs);
     bool loadPlayerRaiderIO(json characterRaiderIO);
+    void print(std::ostream& oss) const;
 };
 
 #endif
